@@ -34,9 +34,3 @@ class Flat(Property):
             f"Obiekt klasy Flat z polami: {self.floor}, {self.area}, "
             f"{self.rooms}, {self.price}, {self.address}"
         )
-
-
-house1 = House(2000, 300, 6, 200000, "Katowice Mikołowska")
-print(house1)
-flat1 = Flat(6, 50, 2, 50000, "Katowice Katowicka")
-print(flat1)

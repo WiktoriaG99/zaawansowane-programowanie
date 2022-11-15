@@ -13,9 +13,3 @@ class Student:
             return True
         else:
             return False
-
-
-student1 = Student("Stefan", [100, 50, 66])
-print(student1.is_passed())
-student2 = Student("Karolina", [10, 20, 60])
-print(student2.is_passed())
