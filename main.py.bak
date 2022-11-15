@@ -13,7 +13,7 @@ class Movie(Resource):
         self.genres = genres
 
 
-@app.route('/', methods=['GET'])
+@app.route('/movies', methods=['GET'])
 def movie_page():
     movie_list = []
 
