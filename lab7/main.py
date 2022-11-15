@@ -10,6 +10,7 @@ import Classes.Tag as TagClass
 app = Flask(__name__)
 api = Api(app)
 
+
 @app.route('/movies', methods=['GET'])
 def movie_page():
     movie_list = []
@@ -48,11 +49,13 @@ def rating_page():
         reader = csv.reader(csv_file)
         next(reader, None)  # Skip header
         for userId, movieId, rating, timestamp in reader:
-            rating_list.append(RatingClass.Rating(userId, movieId, rating, timestamp))
+            rating_list.append(RatingClass.Rating(userId,
+                                                  movieId, rating, timestamp))
 
     data_set = json.dumps([ob.__dict__ for ob in rating_list], indent=5)
 
     return data_set
+
 
 @app.route('/tags', methods=['GET'])
 def tag_page():
@@ -67,6 +70,7 @@ def tag_page():
     data_set = json.dumps([ob.__dict__ for ob in tag_list], indent=5)
 
     return data_set
+
 
 if __name__ == '__main__':
     app.run(debug=True)

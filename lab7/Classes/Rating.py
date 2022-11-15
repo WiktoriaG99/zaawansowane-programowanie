@@ -1,5 +1,6 @@
 from flask_restful import Resource
 
+
 class Rating(Resource):
     def __init__(self, userId, movieId, rating, timestamp):
         self.userId = userId
