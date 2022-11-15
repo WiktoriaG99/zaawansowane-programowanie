@@ -6,6 +6,7 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
+
 class Movie(Resource):
     def __init__(self, movieID, title, genres):
         self.movieID = movieID
@@ -26,6 +27,7 @@ def movie_page():
     data_set = json.dumps([ob.__dict__ for ob in movie_list], indent=5)
 
     return data_set
+
 
 if __name__ == '__main__':
     app.run(debug=True)
