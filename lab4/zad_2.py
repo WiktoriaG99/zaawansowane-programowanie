@@ -7,7 +7,8 @@ class Library:
         self.phone = phone
 
     def __str__(self):
-        return f"Obiekt klasy Library z polami: " f"{self.city}, {self.street}, itd..."
+        return f"Obiekt klasy Library z polami:" \
+               f" " f"{self.city}, {self.street}, itd..."
 
 
 class Employee:
@@ -44,12 +45,14 @@ class Stud:
         self.surname = surname
 
     def __str__(self):
-        return f"Obiekt klasy Student z polami: " f"{self.name}, {self.surname}"
+        return f"Obiekt klasy Student z polami: " \
+               f"" f"{self.name}, {self.surname}"
 
 
 class Book:
     def __init__(
-        self, library, publication_date, author_name, author_surname, number_of_pages
+        self, library, publication_date, author_name,
+            author_surname, number_of_pages
     ):
         self.library = library
         self.publication_date = publication_date
@@ -78,7 +81,8 @@ class Order:
         )
 
 
-biblioteka1 = Library("Katowice", "Katowicka", "40-000", "8:00-18:00", "123123123")
+biblioteka1 = Library("Katowice", "Katowicka", "40-000",
+                      "8:00-18:00", "123123123")
 biblioteka2 = Library("Żory", "Szeroka", "44-240", "10:00-20:00", "678678678")
 ksiazka1 = Book(biblioteka1, "20.10.2021", "Jan", "Kowalski", "200")
 ksiazka2 = Book(biblioteka2, "21.11.2020", "Henryk", "Nowak", "300")
@@ -119,7 +123,8 @@ stud1 = Stud("Anna", "Zaradna")
 stud2 = Stud("Marek", "Marecki")
 stud3 = Stud("Weronika", "Sawyer")
 zamowienie1 = Order(pracownik1, stud1, [ksiazka1, ksiazka2], "20.09.2022")
-zamowienie2 = Order(pracownik3, stud3, [ksiazka5, ksiazka4, ksiazka3], "18.08.2022")
+zamowienie2 = Order(pracownik3, stud3,
+                    [ksiazka5, ksiazka4, ksiazka3], "18.08.2022")
 
 print(zamowienie1)
 print(zamowienie2)
