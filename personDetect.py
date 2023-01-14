@@ -1,11 +1,6 @@
-# Doinstalowane paczki: imutils, numpy, opencv-python
-
 import imutils
 import numpy
 import cv2
-from flask import Flask
-from flask_restful import Resource, Api
-import json
 
 # Ścieżka do do pliku .prototxt
 # z tekstowym opisem architektury sieci
@@ -45,6 +40,10 @@ def beDeclination(people_counter):
 
 # Metoda wykrywająca i zliczająca liczbę osób na zdjęciu
 def personDetectionFromImage(image):
+
+    filename = image
+    image = 'static/uploads/' + filename
+
     # Wczytanie zdjęcia poprzez podanie ścieżki
     image = cv2.imread(image)
 
@@ -102,5 +101,5 @@ def personDetectionFromImage(image):
     result = (f"Na zdjęciu {beDeclination(people_counter)} się "
           f"{people_counter} "
           f"{peopleDeclination(people_counter)}.")
-    print(result)
-    cv2.imwrite("static/IMG/img.jpg", image)
+    cv2.imwrite(('static/uploads/' + filename), image)
+    return result
