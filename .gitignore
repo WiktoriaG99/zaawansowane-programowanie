@@ -6,3 +6,8 @@ __pycache__/personDetect.cpython-39.pyc
 .idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
+venv/*
+.idea/*
+*.xml
+*.xml
+*.xml

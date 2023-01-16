@@ -1,4 +1,5 @@
-from flask import Flask, flash, request, redirect, url_for, render_template
+from flask import Flask, flash, request, \
+    redirect, url_for, render_template
 from flask_restful import Resource, Api
 import os
 import personDetect
@@ -15,11 +16,12 @@ app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
+#Dozwolone pliki do przesłania
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
-#Dozwolone pliki do przesłania
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def home():
