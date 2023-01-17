@@ -11,13 +11,16 @@ modelpath = "MobileNetSSD_deploy.caffemodel"
 
 # Utworzenie detektora wykrywającego elementy na zdjęciu
 # na podstawie protofile i modelu
-detector = cv2.dnn.readNetFromCaffe(prototxt=protopath, caffeModel=modelpath)
+detector = cv2.dnn.readNetFromCaffe(prototxt=protopath,
+                                    caffeModel=modelpath)
 
 # Wypisanie wszystkich możliwych klas z modelu
-model_classes = ["background", "aeroplane", "bicycle", "bird", "boat",
-                 "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
-                 "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
-                 "sofa", "train", "tvmonitor"]
+model_classes = ["background", "aeroplane", "bicycle",
+                 "bird", "boat", "bottle", "bus", "car",
+                 "cat", "chair", "cow", "diningtable",
+                 "dog", "horse", "motorbike", "person",
+                 "pottedplant", "sheep", "sofa",
+                 "train", "tvmonitor"]
 
 
 # Metoda zwracająca odpowiednią odmianę słowa "osoba"
@@ -31,12 +34,14 @@ def peopleDeclination(people_counter):
         string = "osób"
     return string
 
+
 def beDeclination(people_counter):
     if 1 < people_counter < 5:
         string = "znajdują"
     else:
         string = "znajduje"
     return string
+
 
 # Metoda wykrywająca i zliczająca liczbę osób na zdjęciu
 def personDetectionFromImage(image):
@@ -60,7 +65,8 @@ def personDetectionFromImage(image):
     # rozmiar oraz średnie wartości odejmowania
     # (image, scalefactor, size, mean)
     # (dnn - deep neural network - głęboka sieć neuronowa)
-    blob = cv2.dnn.blobFromImage(image, 0.008, (width, height), (30, 90, 130))
+    blob = cv2.dnn.blobFromImage(image, 0.008,
+                                 (width, height), (30, 90, 130))
 
     # Przekazanie bloba do detectora
     detector.setInput(blob)
@@ -80,7 +86,8 @@ def personDetectionFromImage(image):
             index = int(person_detections[0, 0, i, 1])
 
             # Jeżeli index detekcji nie jest zgodny z indexem osoby
-            # w tablicy klas - pominięcie detekcji i przejście do kolejnej
+            # w tablicy klas - pominięcie detekcji
+            # i przejście do kolejnej
             if model_classes[index] != "person":
                 continue
 
@@ -88,7 +95,8 @@ def personDetectionFromImage(image):
             people_counter = people_counter + 1
 
             # Wyliczenie ramki zaznaczającej wykrytą osobę
-            person_box = person_detections[0, 0, i, 3:7] * numpy.array([width, height, width, height])
+            person_box = person_detections[0, 0, i, 3:7] \
+                         * numpy.array([width, height, width, height])
             (startX, startY, endX, endY) = person_box.astype("int")
 
             # Kolor ramki
@@ -96,7 +104,8 @@ def personDetectionFromImage(image):
             # Grubość ramki
             frame_thickness = 1
             # Narysowanie ramki dookoła wykrytej osoby
-            cv2.rectangle(image, (startX, startY), (endX, endY), frame_color, frame_thickness)
+            cv2.rectangle(image, (startX, startY), (endX, endY),
+                          frame_color, frame_thickness)
 
     result = (f"Na zdjęciu {beDeclination(people_counter)} się "
           f"{people_counter} "
